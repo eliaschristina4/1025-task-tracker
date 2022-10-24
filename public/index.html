@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <!-- jQuery??? for template portion -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Task Tracker</title>
+</head>
+<body>
+    
+    <body>
+		<div class="todos">
+			<h1>Task List</h1>
+			<ul id="todos">
+				<!-- Use Template -->
+				<!-- <li class="todo clearfix is-done"></li> -->
+			</ul>
+
+			<form id="add-task" class="pure-material-textfield-outlined">
+				<input placeholder=" " name="todo" type="text" id="task" required />
+				<input id="add" type="submit" value="add" class="pure-material-button-contained"  >
+			</form>
+		</div>
+
+		<template class="todo-template">
+			<li class="todo clearfix">
+				<p class="text">item</p>
+				<label class="js-check pure-material-checkbox">
+					<input type="checkbox" name="taskDone" required />
+					<span></span>
+				</label>
+				<a href="#" class="js-delete close" onclick="deleteTask()"></a>
+                <!-- <a href="#" class="js-edit" onclick="editTask()">Edit</a> -->
+			</li>
+		</template>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
