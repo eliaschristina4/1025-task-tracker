@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./style.css">
-    <!-- jQuery??? for template portion -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Task Tracker</title>
-</head>
-<body>
-    
-    <body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Task Tracker</title>
+		<link rel="stylesheet" href="style.css" />
+
+		<!-- IMPORT JQUERY FROM CDN -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- IMPORT JQUERY FROM CDN -->
+
+	</head>
+
+	<body>
 		<div class="todos">
 			<h1>Task List</h1>
 			<ul id="todos">
@@ -25,15 +27,15 @@
 			</form>
 		</div>
 
+		 <!-- template tag is a container for content you want to hide from the user, then can show later with JS -->
 		<template class="todo-template">
 			<li class="todo clearfix">
 				<p class="text">item</p>
 				<label class="js-check pure-material-checkbox">
-					<input type="checkbox" name="taskDone" required />
+					<input type="checkbox" name="taskDone" id="js-check"required />
 					<span></span>
 				</label>
-				<a href="#" class="js-delete close" onclick="deleteTask()"></a>
-                <!-- <a href="#" class="js-edit" onclick="editTask()">Edit</a> -->
+				<a href="#" class="js-delete close" id="js-delete"></a>
 			</li>
 		</template>
 

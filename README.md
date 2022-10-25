@@ -2,13 +2,14 @@
 ### Christina Elias
 
 ## Description
-Second attempt at task tracker app using Node.js and JSON to store and retrieve the tasks.
+This is a task tracker app that allows users to access pre-existing tasks stored in a JSON file, then add/check off/delete tasks as they need.
 
 ## Plan going into it
-Talk about how you planned to approach the project here.
+This was approached with a front-end first mentality. I first focused on formatting/set-up, then functionality. 
 
 ## Process
 Write about the process here.
+JS -- tutorial and mapty project codealong where he used a class, constructor and methods to create map/workout tracking app
 
 ## Challenges, Errors and Solutions
 Talk through what challenges you faces and how you handled errors here.
