@@ -3,8 +3,10 @@
 const fs = require('fs');
 const express = require('express');
 const dotenv = require('dotenv');
-const {v1:uuid} = require('uuid');
+const {v1:uuid} = require('uuid'); // universally unique identifier
+
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -31,7 +33,7 @@ app.post('/saveItem',(req,res)=>{
     req.body.id = id; // assigning the id from above
     db.items[db.items.length] = req.body;
     fs.writeFileSync(__dirname+'/db.json', JSON.stringify(db)); // writing the new JSON string to the file
-    res.status(200).json({message:"New item Saved", id:id});
+    res.status(200).json({message:"new item saved", id:id});
   })
 })
 

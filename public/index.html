@@ -7,9 +7,10 @@
 		<title>Task Tracker</title>
 		<link rel="stylesheet" href="style.css" />
 
-		<!-- IMPORT JQUERY FROM CDN -->
+		<!-- IMPORT JQUERY LIBRARY FROM CDN  --> 
+			<!-- Need this to be able to use jquery in js files -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		<!-- IMPORT JQUERY FROM CDN -->
+		<!-- IMPORT JQUERY LIBRARY FROM CDN -->
 
 	</head>
 
@@ -17,13 +18,13 @@
 		<div class="todos">
 			<h1>Task List</h1>
 			<ul id="todos">
-				<!-- Use Template -->
+				<!-- insert template from below here -->
 				<!-- <li class="todo clearfix is-done"></li> -->
 			</ul>
 
-			<form id="add-task" class="pure-material-textfield-outlined">
+			<form id="add-task" class="textfield-outline">
 				<input placeholder=" " name="todo" type="text" id="task" required />
-				<input id="add" type="submit" value="add" class="pure-material-button-contained"  >
+				<input id="add" type="submit" value="add" class="button"  >
 			</form>
 		</div>
 
@@ -31,7 +32,7 @@
 		<template class="todo-template">
 			<li class="todo clearfix">
 				<p class="text">item</p>
-				<label class="js-check pure-material-checkbox">
+				<label class="js-check checkbox-label">
 					<input type="checkbox" name="taskDone" id="js-check"required />
 					<span></span>
 				</label>

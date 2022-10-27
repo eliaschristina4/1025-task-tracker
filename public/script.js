@@ -3,49 +3,23 @@
 
 class TaskTracker {
     constructor() {
-		this.init(); // calls this upon the creation of a new instance of the TaskTracker class, which we do all the way at the bottom of the file
+		this.initial(); // calls this upon the creation of a new instance of the TaskTracker class, which we do at the bottom of the file
 	}
 
-	init() {
-		// add event handlers using jQuery // JS library with simplified syntax -- basically abbreviations for JS
-		// document.querySelector() === $()
-		// $('#add-task').on('submit',(e)=>{this.addTask(e)}); 
-		// $('#todos').on('click','.js-delete', (e)=>{this.deleteTask(e)} ); // event, selector, do something
-		// $('#todos').on('click','.js-check', (e)=>{this.toggleDone(e)} );
+	initial() { // Call event handlers here
 
-		// add - OK
-		document.querySelector('#add-task').addEventListener('submit', (e) => {
-			this.addTask(e); // works
-		});
+		// Add Task ("vanilla" js)
+			// document.querySelector('#add-task').addEventListener('submit', (e) => {
+			// 	this.addTask(e); 
+			// });
 
-		// delete
-		document.querySelector("#todos").addEventListener('click', (e) => {
-			if (e.target && e.target.classList.contains == 'js-delete'){
-				console.log('delete success'); // works
-				this.deleteTask(e); // doesn't
-			} else if (e.target && e.target.classList.contains == 'js-check'){
-				console.log('check success');
-				this.toggleDone(e);
-			} else {
-				console.log('idk what you want')
-			}
+		// jQuery // JS library with simplified syntax -- basically abbreviations for JS that can allow you to do more
+			// document.querySelector('htmlElement') === $('htmlElement')
+		$('#add-task').on('submit', (e) => {this.addTask(e)} ); 
+		$('#todos').on('click', '.js-delete', (e) => {this.deleteTask(e)} ); // event, selector, do something
+		$('#todos').on('click', '.js-check', (e) => {this.toggleDone(e)} );
 
-
-
-		})
-
-		// toggle checkmark
-		// document.querySelector('#todos').addEventListener('click', (e) => {
-		// 	if (e.target && e.target.id == '.js-check'){
-		// 		console.log('check success');
-		// 		this.toggleDone(e)
-		// 	}
-		// })
-
-
-	
-		
-		// This fetch and the showTasks method pull in any pre-existing data from the JSON file
+		// This fetch and the showTasks method pull in any pre-existing data from the JSON file on load
 		fetch('/getItems')
 			.then(response => response.json())
 			.then(data => {
@@ -53,9 +27,10 @@ class TaskTracker {
 			});
 			
 	}
-
+	// Show Pre-existing Tasks
 	showTasks(tasks){
 		tasks.forEach(task => {
+			// $ is another jQuery convention
 			const $template = $('.todo-template').contents().clone();
 			$template.find('.text').text(task.text);
 			$template.attr('data-id',task.id);
@@ -67,13 +42,13 @@ class TaskTracker {
 			$('#todos').append($template);
 		});
 	}
-
+	// Add New Tasks
 	addTask(e){
-		e.preventDefault();
-		const task = $('#task').val();
+		e.preventDefault(); // prevent auto page refresh
+		let task = $('#task').val();
 		const $template = $('.todo-template').contents().clone();
 		$template.find('.text').text(task);
-
+		// fetch with the same routes as the post method on the backend; what sends to JSON
 		fetch('/saveItem', {
 			method: 'post',
 			body: JSON.stringify({"text": task, "checked":false}),
@@ -88,16 +63,17 @@ class TaskTracker {
 			$('#todos').append($template);
 		});
 	}
-
+	// Deleting Completed Tasks
 	deleteTask(e){
-		const task = $(e.currentTarget).parent('.todo');
+		const task = $(e.currentTarget).parent('.todo'); // current target for dynamically added elements
 		const id = task.data('id');
 		task.remove();
+		// Our fetch connect to the delete route in server.js
 		fetch('/deleteItem/'+ id,{
 			method: 'delete',
 		}); 
 	}
-
+	// Checkmark Toggle
 	toggleDone(e){
 		e.preventDefault();
 		const id = $(e.currentTarget)
@@ -107,7 +83,7 @@ class TaskTracker {
 			
 			const isChecked = $(e.currentTarget).find('input').prop('checked');
 			$(e.currentTarget).find('input').prop('checked', !isChecked);
-
+			// Another fetch connected to a post (update) route on the backend
 			fetch('/updateItem/'+id, {
 				method: 'post',
 				body: JSON.stringify({"prop": "checked", "value":!isChecked }),
@@ -118,4 +94,5 @@ class TaskTracker {
 	}
 };
 
+// Calling new instance of the object which sets off everything above
 new TaskTracker(); 
